@@ -1,8 +1,10 @@
 
 
-
-
 const fs = require('fs');
+const fetch = require('node-fetch');
+//import  fetch from 'node-fetch';
+
+
 
 
 async function read() {
@@ -79,7 +81,10 @@ async function start(){
     start();
 
   }else{
+    await write();
+    await sleep(3000);
     console.log("error = " + err);
+    start();
   }
 
 
@@ -87,9 +92,9 @@ async function start(){
 
 
 
-async function request(ip,linear = 0,angular = 0){
+async function request(ip,linear = '0',angular = '0'){
   
-  
+  //POST http://{ip.address}/api/drive
   Promise.race([
     fetch('http://'+ip+'/api/drive?linearVelocity='+linear+'&angularVelocity='+ angular, {
       method: 'POST',
