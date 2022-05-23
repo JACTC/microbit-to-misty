@@ -9,19 +9,48 @@ async function read() {
 try {
     const data = fs.readFileSync('/Users/jacta/Desktop/cole/robotics/microbit to misty/log/teraterm.log', 'utf8');
     console.log(data);
+    return data;
   } catch (err) {
     console.error(err);
   }
-      
+  
 }
 
 
 
 
+async function check(data, ip){
+  if (data === "fw"){
+    console.log(data + " registered");
+    await request(ip, 50, 0);
+    return 0;
+  }else if (data === "bw"){
+    console.log(data + " registered");
+
+
+    return 0;
+  }else if (data === "left"){
+    console.log(data + " registered");
+    //request to misty
+
+    return 0;
+  }else if (data === "right"){
+    console.log(data + " registered");
+    //request to misty
+
+    return 0;
+  }else{
+    console.log("Sorry the command is not on our system");
+    return 1;
+  }
+
+}
+
+
 
 async function write(){
 
-    const content = ' ';
+    const content = '';
 
     try {
         fs.writeFileSync('/Users/jacta/Desktop/cole/robotics/microbit to misty/log/teraterm.log', content);
@@ -32,24 +61,53 @@ async function write(){
 
 }
 
-while (true){
-    start();
 
-}
-
-
+start();
 
 async function start(){
     
-    await read();
+  var ip = '';
+
+
+
+  var data = await read();
+  console.log(data);
+  var err = await check(data, ip);
+  if (err === 0){
     await write();
-    await sleep(1000);
-    
+    await sleep(3000);
+    start();
+
+  }else{
+    console.log("error = " + err);
+  }
+
 
 }
 
 
 
+async function request(ip,linear = 0,angular = 0){
+  
+  
+  Promise.race([
+    fetch('http://'+ip+'/api/drive?linearVelocity='+linear+'&angularVelocity='+ angular, {
+      method: 'POST',
+      body: '{ "linearVelocity":'+linear+',"angularVelocity":'+angular+' }'
+    }),
+    new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 10000))
+  ])
+  .then(response => response.json())
+  .then(jsonData => console.log(jsonData))
+
+  
+
+}
+
+
+
+
+
 function sleep(ms) {
     return new Promise((resolve) => {
       setTimeout(resolve, ms);
@@ -57,18 +115,4 @@ function sleep(ms) {
   }
 
 
-/*const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
-function sleep(ms) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-  }
 
-
-const content = 'hellooo';
-fs.writeFile('/Users/jacta/Desktop/cole/robotics/microbit to misty/log/teraterm.log', content, err => {
-  if (err) {
-    console.error(err);
-  }
-    console.log('File has been written');
-});*/
