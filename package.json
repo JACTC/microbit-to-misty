@@ -1,0 +1,25 @@
+{
+  "type": "module",
+  "name": "microbit-to-misty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "microbit-misty.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JACTC/microbit-to-misty.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JACTC/microbit-to-misty/issues"
+  },
+  "homepage": "https://github.com/JACTC/microbit-to-misty#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "node-fetch": "^3.2.4"
+  }
+}

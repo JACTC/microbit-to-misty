@@ -1,8 +1,8 @@
 
 
-const fs = require('fs');
-const fetch = require('node-fetch');
-//import  fetch from 'node-fetch';
+import fs from 'fs';
+//const fetch = require('node-fetch');
+import fetch from 'node-fetch'; 
 
 
 
@@ -68,7 +68,7 @@ start();
 
 async function start(){
     
-  var ip = '';
+  var ip = '192.168.137.99';
 
 
 
@@ -96,7 +96,7 @@ async function request(ip,linear = '0',angular = '0'){
   
   //POST http://{ip.address}/api/drive
   Promise.race([
-    fetch('http://'+ip+'/api/drive?linearVelocity='+linear+'&angularVelocity='+ angular, {
+    fetch('http://'+ip+'/api/drive?linearVelocity='+linear+'&angularVelocity='+ angular,{
       method: 'POST',
       body: '{ "linearVelocity":'+linear+',"angularVelocity":'+angular+' }'
     }),
