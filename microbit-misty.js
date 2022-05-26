@@ -28,17 +28,17 @@ async function check(data, ip){
     return 0;
   }else if (data === "bw"){
     console.log(data + " registered");
-
+    await request(ip, -50, 0);
 
     return 0;
   }else if (data === "left"){
     console.log(data + " registered");
-    //request to misty
+    await request(ip, 50, -50);
 
     return 0;
   }else if (data === "right"){
     console.log(data + " registered");
-    //request to misty
+    await request(ip, 50, 50);
 
     return 0;
   }else{
