@@ -66,7 +66,7 @@ start();
 
 async function start(){
     
-  var ip = '192.168.137.99';
+  var ip = '192.168.137.233';
 
 
 
@@ -75,12 +75,12 @@ async function start(){
   var err = await check(data, ip);
   if (err === 0){
     await write();
-    await sleep(3000);
+    await sleep(1000);
     start();
 
   }else{
     await write();
-    await sleep(3000);
+    await sleep(1000);
     console.log("error = " + err);
     start();
   }
