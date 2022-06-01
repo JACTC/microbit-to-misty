@@ -5,8 +5,6 @@ import fs from 'fs';
 import fetch from 'node-fetch'; 
 
 
-
-
 async function read() {
 try {
     const data = fs.readFileSync('/Users/jacta/Desktop/cole/robotics/microbit to misty/log/teraterm.log', 'utf8');
