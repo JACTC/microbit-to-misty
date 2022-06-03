@@ -20,23 +20,28 @@ try {
 
 
 async function check(data, ip){
-  if (data === "fw"){
+  if (data.includes('fw')){
     console.log(data + " registered");
     await request(ip, 50, 0);
     return 0;
-  }else if (data === "bw"){
+  }else if (data.includes('bw')){
     console.log(data + " registered");
     await request(ip, -50, 0);
 
     return 0;
-  }else if (data === "left"){
+  }else if (data.includes('left')){
     console.log(data + " registered");
     await request(ip, 50, -50);
 
     return 0;
-  }else if (data === "right"){
+  }else if (data.includes('right')){
     console.log(data + " registered");
     await request(ip, 50, 50);
+
+    return 0;
+  }else if (data.includes('stop')){
+    console.log(data + " registered");
+    await request(ip, 0, 0);
 
     return 0;
   }else{
@@ -66,7 +71,7 @@ start();
 
 async function start(){
     
-  var ip = '192.168.137.233';
+  var ip = '192.168.137.210';
 
 
 
