@@ -21,6 +21,6 @@
   "dependencies": {
     "fs": "^0.0.1-security",
     "node-fetch": "^3.2.10",
-    "serialport": "^10.4.0"
+    "serialport": "^10.5.0"
   }
 }
