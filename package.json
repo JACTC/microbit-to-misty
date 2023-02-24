@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/JACTC/microbit-to-misty#readme",
   "dependencies": {
-    "fs": "^0.0.1-security",
+    "fs": "^0.0.2",
     "node-fetch": "^3.2.10",
     "serialport": "^10.5.0"
   }
